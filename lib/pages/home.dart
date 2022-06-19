@@ -55,8 +55,32 @@ class HomePage extends StatelessWidget {
                     scale: 10,
                   ),
                 ),
+              ],
+            ),
+          ),
+          SliverPadding(
+            padding:
+                const EdgeInsets.only(top: 5, left: 10, right: 10, bottom: 10),
+            sliver: SliverGrid.count(
+              childAspectRatio: 1,
+              crossAxisSpacing: 5,
+              mainAxisSpacing: 5,
+              crossAxisCount: 2,
+              children: <Widget>[
                 ActionCard(
-                  cardColor: Colors.deepPurple[400],
+                  cardColor: Colors.purple[400],
+                  title: 'Generate from clipboard',
+                  onTap: () => Navigator.pushNamed(context, "/generate"),
+                  padding: const EdgeInsets.all(14.0),
+                  borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                  backgroundImage: Image.asset(
+                    UIData.qrcodeImage,
+                    alignment: AlignmentDirectional.bottomEnd,
+                    scale: 12,
+                  ),
+                ),
+                ActionCard(
+                  cardColor: Colors.pink[400],
                   title: 'About',
                   onTap: () => Navigator.pushNamed(context, "/about"),
                   padding: const EdgeInsets.all(14.0),
@@ -64,12 +88,12 @@ class HomePage extends StatelessWidget {
                   backgroundImage: Image.asset(
                     UIData.qrcodeImage,
                     alignment: AlignmentDirectional.bottomEnd,
-                    scale: 10,
+                    scale: 12,
                   ),
                 ),
               ],
             ),
-          ),
+          )
         ],
       ),
     );
