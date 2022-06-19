@@ -40,37 +40,13 @@ class HomePage extends StatelessWidget {
                   backgroundImage: Image.asset(
                     UIData.qrcodeImage,
                     alignment: AlignmentDirectional.bottomEnd,
-                    scale: 9,
+                    scale: 10,
                   ),
                 ),
                 ActionCard(
-                  cardColor: Colors.orange[400],
+                  cardColor: Colors.lightBlue[400],
                   title: 'Generate QR Code',
                   onTap: () => Navigator.pushNamed(context, "/generate"),
-                  padding: const EdgeInsets.all(14.0),
-                  borderRadius: const BorderRadius.all(Radius.circular(20.0)),
-                  backgroundImage: Image.asset(
-                    UIData.qrcodeImage,
-                    alignment: AlignmentDirectional.bottomEnd,
-                    scale: 9,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SliverPadding(
-            padding:
-                const EdgeInsets.only(top: 5, left: 10, right: 10, bottom: 10),
-            sliver: SliverGrid.count(
-              childAspectRatio: 1,
-              crossAxisSpacing: 5,
-              mainAxisSpacing: 5,
-              crossAxisCount: 2,
-              children: <Widget>[
-                ActionCard(
-                  cardColor: Colors.blue[400],
-                  title: 'Settings',
-                  onTap: () => Navigator.pushNamed(context, "/settings"),
                   padding: const EdgeInsets.all(14.0),
                   borderRadius: const BorderRadius.all(Radius.circular(20.0)),
                   backgroundImage: Image.asset(
@@ -80,7 +56,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 ActionCard(
-                  cardColor: Colors.teal[400],
+                  cardColor: Colors.deepPurple[400],
                   title: 'About',
                   onTap: () => Navigator.pushNamed(context, "/about"),
                   padding: const EdgeInsets.all(14.0),
@@ -93,7 +69,7 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
