@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 class AboutPage extends StatelessWidget {
   const AboutPage({Key? key}) : super(key: key);
 
+  static const routeName = '/about';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

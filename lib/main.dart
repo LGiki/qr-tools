@@ -23,12 +23,12 @@ class QrToolsApp extends StatelessWidget {
       ),
       home: const HomePage(),
       routes: <String, WidgetBuilder>{
-        "/home": (BuildContext context) => const HomePage(),
-        "/scan": (BuildContext context) => const ScanQrPage(),
-        "/generate": (BuildContext context) => const GenerateQrPage(),
-        "/settings": (BuildContext context) => const SettingsPage(),
-        "/about": (BuildContext context) => const AboutPage(),
-        "/scan_result": (BuildContext context) => const ScanResultPage(),
+        HomePage.routeName: (BuildContext context) => const HomePage(),
+        ScanQrPage.routeName: (BuildContext context) => const ScanQrPage(),
+        GenerateQrPage.routeName: (BuildContext context) => const GenerateQrPage(),
+        SettingsPage.routeName: (BuildContext context) => const SettingsPage(),
+        AboutPage.routeName: (BuildContext context) => const AboutPage(),
+        ScanResultPage.routeName: (BuildContext context) => const ScanResultPage(),
       },
     );
   }

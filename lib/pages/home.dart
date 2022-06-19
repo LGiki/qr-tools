@@ -6,6 +6,8 @@ import 'package:qr_tools/widgets/action_card.dart';
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
+  static const routeName = '/home';
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([

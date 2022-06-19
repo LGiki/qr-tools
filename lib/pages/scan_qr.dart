@@ -5,6 +5,8 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 class ScanQrPage extends StatelessWidget {
   const ScanQrPage({Key? key}) : super(key: key);
 
+  static const routeName = '/scan';
+
   // MobileScannerController cameraController = MobileScannerController();
 
   @override
