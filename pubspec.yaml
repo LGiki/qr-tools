@@ -40,6 +40,8 @@ dev_dependencies:
     sdk: flutter
   mobile_scanner: ^2.0.0
   qr_flutter: ^4.0.0
+  flutter_colorpicker: ^1.0.3
+  image_picker: ^0.8.5+3
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
