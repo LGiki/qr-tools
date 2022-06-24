@@ -43,55 +43,59 @@ class WifiDetail extends StatelessWidget {
     final wifi = parseWifiUrl(wifiUrl);
     return Column(
       children: <Widget>[
-        ListTile(
-          onTap: () {
-            Util.copyToClipboard(wifi.authenticationType!);
-          },
-          leading: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
-              Icon(Icons.lock),
-            ],
+        if (wifi.authenticationType != null)
+          ListTile(
+            onTap: () {
+              Util.copyToClipboard(wifi.authenticationType!);
+            },
+            leading: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const <Widget>[
+                Icon(Icons.lock),
+              ],
+            ),
+            title: const Text('Authentication type'),
+            subtitle: Text(wifi.authenticationType!),
           ),
-          title: const Text('Authentication type'),
-          subtitle: Text(wifi.authenticationType!),
-        ),
-        ListTile(
-          onTap: () {
-            Util.copyToClipboard(wifi.ssid!);
-          },
-          leading: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
-              Icon(Icons.title),
-            ],
+        if (wifi.ssid != null)
+          ListTile(
+            onTap: () {
+              Util.copyToClipboard(wifi.ssid!);
+            },
+            leading: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const <Widget>[
+                Icon(Icons.title),
+              ],
+            ),
+            title: const Text('SSID'),
+            subtitle: Text(wifi.ssid!),
           ),
-          title: const Text('SSID'),
-          subtitle: Text(wifi.ssid!),
-        ),
-        ListTile(
-          onTap: () {
-            Util.copyToClipboard(wifi.password!);
-          },
-          leading: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
-              Icon(Icons.password),
-            ],
+        if (wifi.password != null)
+          ListTile(
+            onTap: () {
+              Util.copyToClipboard(wifi.password!);
+            },
+            leading: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const <Widget>[
+                Icon(Icons.password),
+              ],
+            ),
+            title: const Text('Password'),
+            subtitle: Text(wifi.password!),
           ),
-          title: const Text('Password'),
-          subtitle: Text(wifi.password!),
-        ),
-        ListTile(
-          leading: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
-              Icon(Icons.hide_source),
-            ],
+        if (wifi.isHidden != null)
+          ListTile(
+            leading: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const <Widget>[
+                Icon(Icons.hide_source),
+              ],
+            ),
+            title: const Text('Hidden'),
+            subtitle: Text(wifi.isHidden! ? 'True' : 'False'),
           ),
-          title: const Text('Hidden'),
-          subtitle: Text(wifi.isHidden! ? 'True' : 'False'),
-        ),
       ],
     );
   }
