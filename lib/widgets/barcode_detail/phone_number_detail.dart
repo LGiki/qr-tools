@@ -24,6 +24,18 @@ class PhoneNumberDetail extends StatelessWidget {
           ),
           title: Text('Call $phoneNumber'),
         ),
+        ListTile(
+          onTap: () {
+            Url.launchURL('sms:$phoneNumber');
+          },
+          leading: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const <Widget>[
+              Icon(Icons.sms),
+            ],
+          ),
+          title: Text('Send SMS to $phoneNumber'),
+        ),
       ],
     );
   }
