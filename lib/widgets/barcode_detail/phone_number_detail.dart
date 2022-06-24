@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:qr_tools/utils/url.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class PhoneNumberDetail extends StatelessWidget {
   const PhoneNumberDetail({Key? key, required this.phoneNumberUrl}) : super(key: key);
@@ -35,6 +37,18 @@ class PhoneNumberDetail extends StatelessWidget {
             ],
           ),
           title: Text('Send SMS to $phoneNumber'),
+        ),
+        ListTile(
+          onTap: () {
+            Clipboard.setData(ClipboardData(text: phoneNumber)).then((value) => Fluttertoast.showToast(msg: 'Copied to clipboard'));
+          },
+          leading: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const <Widget>[
+              Icon(Icons.copy),
+            ],
+          ),
+          title: Text('Copy $phoneNumber'),
         ),
       ],
     );
