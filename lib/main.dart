@@ -23,7 +23,7 @@ class QrToolsApp extends StatelessWidget {
       home: const HomePage(),
       routes: <String, WidgetBuilder>{
         HomePage.routeName: (BuildContext context) => const HomePage(),
-        ScanQrPage.routeName: (BuildContext context) => const ScanQrPage(),
+        ScanQrPage.routeName: (BuildContext context) => ScanQrPage(),
         GenerateQrPage.routeName: (BuildContext context) => const GenerateQrPage(),
         AboutPage.routeName: (BuildContext context) => const AboutPage(),
         ScanResultPage.routeName: (BuildContext context) => const ScanResultPage(),
