@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
                   backgroundImage: Image.asset(
                     UIData.scanQrImage,
                     alignment: AlignmentDirectional.bottomEnd,
-                    scale: 10,
+                    scale: 12,
                   ),
                 ),
                 ActionCard(
@@ -76,7 +76,7 @@ class HomePage extends StatelessWidget {
                   backgroundImage: Image.asset(
                     UIData.generateFromClipboardImage,
                     alignment: AlignmentDirectional.bottomEnd,
-                    scale: 14,
+                    scale: 18,
                   ),
                 ),
                 ActionCard(
@@ -88,7 +88,7 @@ class HomePage extends StatelessWidget {
                   backgroundImage: Image.asset(
                     UIData.aboutImage,
                     alignment: AlignmentDirectional.bottomEnd,
-                    scale: 8,
+                    scale: 10,
                   ),
                 ),
               ],
