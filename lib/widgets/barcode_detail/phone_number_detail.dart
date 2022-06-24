@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:qr_tools/utils/url.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:qr_tools/utils/util.dart';
 
 class PhoneNumberDetail extends StatelessWidget {
   const PhoneNumberDetail({Key? key, required this.phoneNumberUrl}) : super(key: key);
@@ -40,7 +39,7 @@ class PhoneNumberDetail extends StatelessWidget {
         ),
         ListTile(
           onTap: () {
-            Clipboard.setData(ClipboardData(text: phoneNumber)).then((value) => Fluttertoast.showToast(msg: 'Copied to clipboard'));
+            Util.copyToClipboard(phoneNumber);
           },
           leading: Column(
             mainAxisAlignment: MainAxisAlignment.center,
