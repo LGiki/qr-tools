@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
                   padding: const EdgeInsets.all(14.0),
                   borderRadius: const BorderRadius.all(Radius.circular(20.0)),
                   backgroundImage: Image.asset(
-                    UIData.qrcodeImage,
+                    UIData.scanQrImage,
                     alignment: AlignmentDirectional.bottomEnd,
                     scale: 10,
                   ),
@@ -74,9 +74,9 @@ class HomePage extends StatelessWidget {
                   padding: const EdgeInsets.all(14.0),
                   borderRadius: const BorderRadius.all(Radius.circular(20.0)),
                   backgroundImage: Image.asset(
-                    UIData.qrcodeImage,
+                    UIData.generateFromClipboardImage,
                     alignment: AlignmentDirectional.bottomEnd,
-                    scale: 12,
+                    scale: 14,
                   ),
                 ),
                 ActionCard(
@@ -86,9 +86,9 @@ class HomePage extends StatelessWidget {
                   padding: const EdgeInsets.all(14.0),
                   borderRadius: const BorderRadius.all(Radius.circular(20.0)),
                   backgroundImage: Image.asset(
-                    UIData.qrcodeImage,
+                    UIData.aboutImage,
                     alignment: AlignmentDirectional.bottomEnd,
-                    scale: 12,
+                    scale: 8,
                   ),
                 ),
               ],
