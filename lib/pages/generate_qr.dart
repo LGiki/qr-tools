@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -5,6 +7,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qr_tools/types/generate_qr_args.dart';
 import 'package:qr_tools/widgets/qr_code_settings.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'dart:ui' as ui;
 
 class GenerateQrPage extends StatefulWidget {
   const GenerateQrPage({
@@ -86,7 +89,7 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
               data: _content,
               version: QrVersions.auto,
               errorCorrectionLevel: _errorCorrectionLevel,
-
+              embeddedImage: _qrEmbedImage?.image,
             ),
           ),
         );
@@ -117,16 +120,25 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
     Fluttertoast.showToast(msg: 'Reset to default settings');
   }
 
-  // GlobalKey globalKey = GlobalKey();
+  GlobalKey globalKey = GlobalKey();
 
-  // Future<void> _capturePng() async {
-  //   RenderRepaintBoundary boundary =
-  //       globalKey.currentContext.findRenderObject();
-  //   ui.image = await boundary.toImage();
-  //   ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-  //   Uint8List pngBytes = byteData.buffer.asUint8List();
-  //   print(pngBytes);
-  // }
+  Future<void> _saveQrImageToGallery() async {
+    final RenderRepaintBoundary boundary = globalKey.currentContext!.findRenderObject()! as RenderRepaintBoundary;
+    final ui.Image image = await boundary.toImage();
+    final ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+    final Uint8List pngBytes = byteData!.buffer.asUint8List();
+    final result = await ImageGallerySaver.saveImage(
+        pngBytes,
+        quality: 100,
+        name: _content
+    );
+    if (result['isSuccess'] != null && result['isSuccess']) {
+      Fluttertoast.showToast(msg: 'Successfully saved to gallery');
+    } else {
+      Fluttertoast.showToast(msg: 'Failed to saved to gallery');
+      debugPrint(result);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -160,21 +172,24 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
                 child: Padding(
                   padding: const EdgeInsets.all(10),
                   child: Align(
-                    child: QrImage(
-                      foregroundColor: _foregroundColor,
-                      backgroundColor: _backgroundColor,
-                      data: _content,
-                      version: QrVersions.auto,
-                      errorCorrectionLevel: _errorCorrectionLevel,
-                      eyeStyle: QrEyeStyle(
-                        eyeShape: _qrEyeShape,
-                        color: Colors.black,
+                    child: RepaintBoundary(
+                      key: globalKey,
+                      child: QrImage(
+                        foregroundColor: _foregroundColor,
+                        backgroundColor: _backgroundColor,
+                        data: _content,
+                        version: QrVersions.auto,
+                        errorCorrectionLevel: _errorCorrectionLevel,
+                        eyeStyle: QrEyeStyle(
+                          eyeShape: _qrEyeShape,
+                          color: Colors.black,
+                        ),
+                        dataModuleStyle: QrDataModuleStyle(
+                          dataModuleShape: _qrDataModuleShape,
+                          color: Colors.black,
+                        ),
+                        embeddedImage: _qrEmbedImage?.image,
                       ),
-                      dataModuleStyle: QrDataModuleStyle(
-                        dataModuleShape: _qrDataModuleShape,
-                        color: Colors.black,
-                      ),
-                      embeddedImage: _qrEmbedImage?.image,
                     ),
                   ),
                 ),
@@ -190,8 +205,8 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
                 ),
               ),
               icon: const Icon(Icons.save),
-              label: const Text('Save to photos'),
-              onPressed: () => debugPrint('Save to photos'),
+              label: const Text('Save to gallery'),
+              onPressed: _saveQrImageToGallery,
             ),
             Card(
               clipBehavior: Clip.antiAlias,
