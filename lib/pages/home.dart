@@ -45,9 +45,9 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 ActionCard(
-                  cardColor: const Color(0xFF2ECFCA),
+                  cardColor: const Color(0xFF84DCCF),
                   title: 'Generate QR Code',
-                  onTap: () => Navigator.pushNamed(context, "/generate", arguments: GenerateQrArgs(const Color(0xFF2ECFCA), false)),
+                  onTap: () => Navigator.pushNamed(context, "/generate", arguments: GenerateQrArgs(const Color(0xFF84DCCF), false)),
                   padding: const EdgeInsets.all(14.0),
                   borderRadius: const BorderRadius.all(Radius.circular(20.0)),
                   backgroundImage: Image.asset(
@@ -69,9 +69,9 @@ class HomePage extends StatelessWidget {
               crossAxisCount: 2,
               children: <Widget>[
                 ActionCard(
-                  cardColor: const Color(0xFFFF8F96),
+                  cardColor: const Color(0xFFE6D0A9),
                   title: 'Generate from clipboard',
-                  onTap: () => Navigator.pushNamed(context, "/generate", arguments: GenerateQrArgs(const Color(0xFFFF8F96), true)),
+                  onTap: () => Navigator.pushNamed(context, "/generate", arguments: GenerateQrArgs(const Color(0xFFE6D0A9), true)),
                   padding: const EdgeInsets.all(14.0),
                   borderRadius: const BorderRadius.all(Radius.circular(20.0)),
                   backgroundImage: Image.asset(
