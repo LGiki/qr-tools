@@ -38,6 +38,7 @@ class QrCodeSettings extends StatelessWidget {
 
   _showBottomPicker(BuildContext context, Widget title, List<Widget> items,
       int initialItemIndex, ValueChanged<int> onSelectedItemChanged) {
+    FocusScope.of(context).unfocus();
     showModalBottomSheet<dynamic>(
       isScrollControlled: true,
       context: context,
@@ -72,6 +73,7 @@ class QrCodeSettings extends StatelessWidget {
   }
 
   _showErrorCorrectionLevelDialog(BuildContext context) {
+    FocusScope.of(context).unfocus();
     var initialItemIndex = 0;
     switch (errorCorrectionLevel) {
       case QrErrorCorrectLevel.L:
@@ -128,6 +130,7 @@ class QrCodeSettings extends StatelessWidget {
   }
 
   _showQrEyeShapeDialog(BuildContext context) {
+    FocusScope.of(context).unfocus();
     var initialItemIndex = 0;
     switch (qrEyeShape) {
       case QrEyeShape.square:
@@ -166,6 +169,7 @@ class QrCodeSettings extends StatelessWidget {
   }
 
   _showQrDataModuleShapeDialog(BuildContext context) {
+    FocusScope.of(context).unfocus();
     var initialItemIndex = 0;
     switch (qrDataModuleShape) {
       case QrDataModuleShape.square:
@@ -205,6 +209,7 @@ class QrCodeSettings extends StatelessWidget {
 
   _showColorPickerDialog(
       BuildContext context, Color color, ValueChanged<Color> onColorChanged) {
+    FocusScope.of(context).unfocus();
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -326,6 +331,7 @@ class QrCodeSettings extends StatelessWidget {
         SizedBox(
           child: ListTile(
             onTap: () async {
+              FocusScope.of(context).unfocus();
               final ImagePicker imagePicker = ImagePicker();
               final XFile? imageFile =
                   await imagePicker.pickImage(source: ImageSource.gallery);
