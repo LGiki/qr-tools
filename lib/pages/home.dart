@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:qr_tools/types/generate_qr_args.dart';
 import 'package:qr_tools/utils/ui_data.dart';
 import 'package:qr_tools/widgets/action_card.dart';
 
@@ -32,7 +33,7 @@ class HomePage extends StatelessWidget {
               crossAxisCount: 1,
               children: <Widget>[
                 ActionCard(
-                  cardColor: Colors.green[400],
+                  cardColor: const Color(0xFF8BCBFC),
                   title: 'Scan QR Code',
                   onTap: () => Navigator.pushNamed(context, "/scan"),
                   padding: const EdgeInsets.all(14.0),
@@ -44,9 +45,9 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 ActionCard(
-                  cardColor: Colors.lightBlue[400],
+                  cardColor: const Color(0xFF2ECFCA),
                   title: 'Generate QR Code',
-                  onTap: () => Navigator.pushNamed(context, "/generate"),
+                  onTap: () => Navigator.pushNamed(context, "/generate", arguments: GenerateQrArgs(const Color(0xFF2ECFCA), false)),
                   padding: const EdgeInsets.all(14.0),
                   borderRadius: const BorderRadius.all(Radius.circular(20.0)),
                   backgroundImage: Image.asset(
@@ -68,9 +69,9 @@ class HomePage extends StatelessWidget {
               crossAxisCount: 2,
               children: <Widget>[
                 ActionCard(
-                  cardColor: Colors.purple[400],
+                  cardColor: const Color(0xFFFF8F96),
                   title: 'Generate from clipboard',
-                  onTap: () => Navigator.pushNamed(context, "/generate"),
+                  onTap: () => Navigator.pushNamed(context, "/generate", arguments: GenerateQrArgs(const Color(0xFFFF8F96), true)),
                   padding: const EdgeInsets.all(14.0),
                   borderRadius: const BorderRadius.all(Radius.circular(20.0)),
                   backgroundImage: Image.asset(
@@ -80,9 +81,9 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 ActionCard(
-                  cardColor: Colors.pink[400],
+                  cardColor: const Color(0xFFA6C8DB),
                   title: 'About',
-                  onTap: () => Navigator.pushNamed(context, "/about"),
+                  onTap: () => Navigator.pushNamed(context, "/about", arguments: const Color(0xFFA6C8DB)),
                   padding: const EdgeInsets.all(14.0),
                   borderRadius: const BorderRadius.all(Radius.circular(20.0)),
                   backgroundImage: Image.asset(

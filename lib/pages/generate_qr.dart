@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:qr_tools/types/generate_qr_args.dart';
 import 'package:qr_tools/widgets/qr_code_settings.dart';
 
 class GenerateQrPage extends StatefulWidget {
@@ -63,30 +64,42 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
 
   void _showLargeQrDialog() {
     showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            titlePadding: const EdgeInsets.all(0),
-            contentPadding: const EdgeInsets.all(0),
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(2))),
-            content: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  QrImage(
-                    foregroundColor: _foregroundColor,
-                    backgroundColor: _backgroundColor,
-                    data: _content,
-                    version: QrVersions.auto,
-                    errorCorrectionLevel: _errorCorrectionLevel,
-                  ),
-                ],
-              ),
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          titlePadding: const EdgeInsets.all(0),
+          contentPadding: const EdgeInsets.all(0),
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(2))),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                QrImage(
+                  foregroundColor: _foregroundColor,
+                  backgroundColor: _backgroundColor,
+                  data: _content,
+                  version: QrVersions.auto,
+                  errorCorrectionLevel: _errorCorrectionLevel,
+                ),
+              ],
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
+  }
+
+  void _pasteFromClipboard() {
+    Clipboard.getData(Clipboard.kTextPlain).then((value) {
+      final newText = value?.text ?? "";
+      _contentController.value = _contentController.value.copyWith(
+        text: newText,
+        selection: TextSelection.collapsed(offset: newText.length),
+      );
+      _setContent(newText);
+    });
   }
 
   // GlobalKey globalKey = GlobalKey();
@@ -102,15 +115,22 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as GenerateQrArgs;
+
+    if (args.pasteFromClipboard) {
+      _pasteFromClipboard();
+    }
+
     return Scaffold(
       appBar: AppBar(
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: Colors.white,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: args.backgroundColor,
           statusBarIconBrightness: Brightness.dark,
           statusBarBrightness: Brightness.light,
         ),
-        backgroundColor: Colors.white,
-        surfaceTintColor: Colors.white,
+        backgroundColor: args.backgroundColor,
+        foregroundColor: Colors.white,
+        surfaceTintColor: args.backgroundColor,
         title: const Text('Generate QR'),
       ),
       body: Padding(
@@ -191,16 +211,7 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
               ),
               icon: const Icon(Icons.paste),
               label: const Text('Paste from clipboard'),
-              onPressed: () {
-                Clipboard.getData(Clipboard.kTextPlain).then((value) {
-                  final newText = value?.text ?? "";
-                  _contentController.value = _contentController.value.copyWith(
-                    text: newText,
-                    selection: TextSelection.collapsed(offset: newText.length),
-                  );
-                  _setContent(newText);
-                });
-              },
+              onPressed: _pasteFromClipboard,
             ),
             Card(
               clipBehavior: Clip.antiAlias,

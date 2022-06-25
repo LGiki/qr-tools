@@ -8,7 +8,7 @@ class AboutPage extends StatelessWidget {
 
   static const routeName = '/about';
 
-  _showLicensePage(BuildContext context) async {
+  _showLicensePage(BuildContext context, Color backgroundColor) async {
     final navigator = Navigator.of(context);
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     String version = packageInfo.version;
@@ -18,11 +18,12 @@ class AboutPage extends StatelessWidget {
           data: ThemeData(
             appBarTheme: AppBarTheme(
               systemOverlayStyle: SystemUiOverlayStyle(
-                  statusBarColor: Colors.teal[400],
+                  statusBarColor: backgroundColor,
                   statusBarIconBrightness: Brightness.light,
                   statusBarBrightness: Brightness.dark),
-              backgroundColor: Colors.teal[400],
+              backgroundColor: backgroundColor,
               foregroundColor: Colors.white,
+              elevation: 0,
             ),
           ),
           child: LicensePage(
@@ -37,13 +38,15 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as Color;
+
     return Scaffold(
       appBar: AppBar(
         systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Colors.teal[400],
+            statusBarColor: args,
             statusBarIconBrightness: Brightness.light,
             statusBarBrightness: Brightness.dark),
-        backgroundColor: Colors.teal[400],
+        backgroundColor: args,
         foregroundColor: Colors.white,
         title: const Text('About'),
       ),
@@ -72,7 +75,7 @@ class AboutPage extends StatelessWidget {
                   ListTile(
                     title: const Text('Licenses'),
                     onTap: () {
-                      _showLicensePage(context);
+                      _showLicensePage(context, args);
                     },
                   ),
                   ListTile(
