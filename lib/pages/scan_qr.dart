@@ -34,7 +34,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
             allowDuplicates: false,
             controller: cameraController,
             onDetect: (barcode, args) {
-              Navigator.pushNamed(
+              Navigator.pushReplacementNamed(
                 context,
                 ScanResultPage.routeName,
                 arguments: barcode,
