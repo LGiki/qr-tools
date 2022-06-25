@@ -1,16 +1,33 @@
-# qr_tools
+# QR Tools
 
-A new Flutter project.
+A simple QR code scanner and generator written in Flutter.
 
-## Getting Started
+# Features
 
-This project is a starting point for a Flutter application.
+- A simple QR code scanner.
+- Support parsing various types of QR codes (Wi-Fi, ISBN, Phone, SMS, URL).
+- A customizable QR code generator.
+- Request only the necessary permissions.
+- Open source and no any trackers and ads.
 
-A few resources to get you started if this is your first Flutter project:
+# Screenshots
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+| Home                   | Screen Result (Wi-Fi)  | Screen Result (ISBN)   |
+| ---------------------- | ---------------------- | ---------------------- |
+| ![](screenshots/1.png) | ![](screenshots/2.png) | ![](screenshots/3.png) |
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+| Generate QR            | Generate QR Settings   | About                  |
+| ---------------------- | ---------------------- | ---------------------- |
+| ![](screenshots/4.png) | ![](screenshots/5.png) | ![](screenshots/6.png) |
+
+# Download
+
+Download the apk from [Releases](https://github.com/LGiki/qr-tools/releases) page.
+
+# Thanks
+
+- App icon: [Qr code scan icons created by Uniconlabs - Flaticon](https://www.flaticon.com/free-icons/qr-code-scan)
+
+# License
+
+MIT
