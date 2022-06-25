@@ -129,10 +129,16 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
     final ByteData? byteData =
         await image.toByteData(format: ui.ImageByteFormat.png);
     final Uint8List pngBytes = byteData!.buffer.asUint8List();
+    DateTime today = DateTime.now();
+    String date ="${today.year.toString()}${today.month.toString().padLeft(2,'0')}${today.day.toString()}";
     final result = await ImageGallerySaver.saveImage(pngBytes,
-        quality: 100, name: _content);
+        quality: 100, name: '$_content$date');
     if (result['isSuccess'] != null && result['isSuccess']) {
-      Fluttertoast.showToast(msg: 'Successfully saved to gallery');
+      if (result['filePath'] != null) {
+        Fluttertoast.showToast(msg: 'Successfully saved to ${result['filePath']}');
+      } else {
+        Fluttertoast.showToast(msg: 'Successfully saved to gallery');
+      }
     } else {
       Fluttertoast.showToast(msg: 'Failed to saved to gallery');
       debugPrint(result);
