@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:qr_tools/pages/scan_result.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ScanQrPage extends StatefulWidget {
   const ScanQrPage({
@@ -79,7 +81,16 @@ class _ScanQrPageState extends State<ScanQrPage> {
             child: Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: IconButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () async {
+                  final ImagePicker imagePicker = ImagePicker();
+                  final XFile? imageFile =
+                      await imagePicker.pickImage(source: ImageSource.gallery);
+                  if (imageFile != null) {
+                    await cameraController.analyzeImage(imageFile.path);
+                  } else {
+                    Fluttertoast.showToast(msg: 'No select any files');
+                  }
+                },
                 icon: const Icon(
                   Icons.photo,
                   color: Colors.white,
