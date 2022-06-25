@@ -123,15 +123,14 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
   GlobalKey globalKey = GlobalKey();
 
   Future<void> _saveQrImageToGallery() async {
-    final RenderRepaintBoundary boundary = globalKey.currentContext!.findRenderObject()! as RenderRepaintBoundary;
+    final RenderRepaintBoundary boundary =
+        globalKey.currentContext!.findRenderObject()! as RenderRepaintBoundary;
     final ui.Image image = await boundary.toImage();
-    final ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+    final ByteData? byteData =
+        await image.toByteData(format: ui.ImageByteFormat.png);
     final Uint8List pngBytes = byteData!.buffer.asUint8List();
-    final result = await ImageGallerySaver.saveImage(
-        pngBytes,
-        quality: 100,
-        name: _content
-    );
+    final result = await ImageGallerySaver.saveImage(pngBytes,
+        quality: 100, name: _content);
     if (result['isSuccess'] != null && result['isSuccess']) {
       Fluttertoast.showToast(msg: 'Successfully saved to gallery');
     } else {
@@ -222,10 +221,15 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
                     errorBorder: InputBorder.none,
                     disabledBorder: InputBorder.none,
                     hintText: 'Your content here...',
-                    suffixIcon: IconButton(
-                      icon: const Icon(Icons.clear),
-                      onPressed: _contentController.clear,
-                    ),
+                    suffixIcon: _content.isNotEmpty
+                        ? IconButton(
+                            icon: const Icon(Icons.clear),
+                            onPressed: () {
+                              _setContent('');
+                              _contentController.clear();
+                            },
+                          )
+                        : null,
                   ),
                   maxLines: 4,
                 ),
