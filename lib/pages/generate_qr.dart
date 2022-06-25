@@ -67,23 +67,17 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          titlePadding: const EdgeInsets.all(0),
           contentPadding: const EdgeInsets.all(0),
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(2))),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                QrImage(
-                  foregroundColor: _foregroundColor,
-                  backgroundColor: _backgroundColor,
-                  data: _content,
-                  version: QrVersions.auto,
-                  errorCorrectionLevel: _errorCorrectionLevel,
-                ),
-              ],
+          content: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: QrImage(
+              foregroundColor: _foregroundColor,
+              backgroundColor: _backgroundColor,
+              data: _content,
+              version: QrVersions.auto,
+              errorCorrectionLevel: _errorCorrectionLevel,
             ),
           ),
         );
