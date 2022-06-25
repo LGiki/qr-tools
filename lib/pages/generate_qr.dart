@@ -105,7 +105,14 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
   }
 
   void _resetToDefaultSettings() {
-
+    setState(() {
+      _errorCorrectionLevel = QrErrorCorrectLevel.L;
+      _backgroundColor = const Color(0xffffffff);
+      _foregroundColor = const Color(0xff000000);
+      _qrEyeShape = QrEyeShape.square;
+      _qrDataModuleShape = QrDataModuleShape.square;
+      _qrEmbedImage = null;
+    });
   }
 
   // GlobalKey globalKey = GlobalKey();
@@ -252,7 +259,7 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
               ),
               icon: const Icon(Icons.refresh),
               label: const Text('Reset to default settings'),
-              onPressed: () => debugPrint('Default'),
+              onPressed: _resetToDefaultSettings,
             ),
           ],
         ),
