@@ -29,7 +29,7 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
   Color _foregroundColor = Colors.black;
   QrEyeShape _qrEyeShape = QrEyeShape.square;
   QrDataModuleShape _qrDataModuleShape = QrDataModuleShape.square;
-  Image? _qrEmbedImage = null;
+  Image? _qrEmbedImage;
 
   void _setErrorCorrectionLevel(int? errorCorrectionLevel) {
     setState(() {
@@ -158,8 +158,8 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
       appBar: AppBar(
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: args.backgroundColor,
-          statusBarIconBrightness: Brightness.dark,
-          statusBarBrightness: Brightness.light,
+          statusBarIconBrightness: Brightness.light,
+          statusBarBrightness: Brightness.dark,
         ),
         backgroundColor: args.backgroundColor,
         foregroundColor: Colors.white,
