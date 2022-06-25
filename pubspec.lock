@@ -135,6 +135,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "4.0.1"
+  image_gallery_saver:
+    dependency: "direct dev"
+    description:
+      name: image_gallery_saver
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.7.1"
   image_picker:
     dependency: "direct dev"
     description:
@@ -289,6 +296,34 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "4.0.0"
+  quick_actions:
+    dependency: "direct dev"
+    description:
+      name: quick_actions
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.6.0+11"
+  quick_actions_android:
+    dependency: transitive
+    description:
+      name: quick_actions_android
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.6.0+11"
+  quick_actions_ios:
+    dependency: transitive
+    description:
+      name: quick_actions_ios
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.6.0+11"
+  quick_actions_platform_interface:
+    dependency: transitive
+    description:
+      name: quick_actions_platform_interface
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.2"
   share_plus:
     dependency: "direct dev"
     description:
