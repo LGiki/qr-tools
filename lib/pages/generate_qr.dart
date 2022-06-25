@@ -25,6 +25,7 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
   Color _foregroundColor = Colors.black;
   QrEyeShape _qrEyeShape = QrEyeShape.square;
   QrDataModuleShape _qrDataModuleShape = QrDataModuleShape.square;
+  Image? _qrEmbedImage = null;
 
   void _setErrorCorrectionLevel(int? errorCorrectionLevel) {
     setState(() {
@@ -62,6 +63,12 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
     });
   }
 
+  void _setQrEmbedImage(Image? qrEmbedImage) {
+    setState(() {
+      _qrEmbedImage = qrEmbedImage;
+    });
+  }
+
   void _showLargeQrDialog() {
     showDialog(
       context: context,
@@ -78,6 +85,7 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
               data: _content,
               version: QrVersions.auto,
               errorCorrectionLevel: _errorCorrectionLevel,
+
             ),
           ),
         );
@@ -94,6 +102,10 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
       );
       _setContent(newText);
     });
+  }
+
+  void _resetToDefaultSettings() {
+
   }
 
   // GlobalKey globalKey = GlobalKey();
@@ -153,6 +165,7 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
                         dataModuleShape: _qrDataModuleShape,
                         color: Colors.black,
                       ),
+                      embeddedImage: _qrEmbedImage?.image,
                     ),
                   ),
                 ),
@@ -223,6 +236,8 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
                   qrDataModuleShape: _qrDataModuleShape,
                   onQrEyeShapeChanged: _setQrEyeShape,
                   onQrDataModuleShapeChanged: _setQrDataModuleShape,
+                  qrEmbedImage: _qrEmbedImage,
+                  onQrEmbedImageChanged: _setQrEmbedImage,
                 ),
               ),
             ),

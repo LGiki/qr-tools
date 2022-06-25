@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
@@ -17,6 +19,8 @@ class QrCodeSettings extends StatelessWidget {
     required this.qrDataModuleShape,
     required this.onQrEyeShapeChanged,
     required this.onQrDataModuleShapeChanged,
+    required this.qrEmbedImage,
+    required this.onQrEmbedImageChanged,
   }) : super(key: key);
 
   final int errorCorrectionLevel;
@@ -29,6 +33,8 @@ class QrCodeSettings extends StatelessWidget {
   final ValueChanged<QrEyeShape> onQrEyeShapeChanged;
   final QrDataModuleShape qrDataModuleShape;
   final ValueChanged<QrDataModuleShape> onQrDataModuleShapeChanged;
+  final Image? qrEmbedImage;
+  final ValueChanged<Image?> onQrEmbedImageChanged;
 
   _showBottomPicker(BuildContext context, Widget title, List<Widget> items,
       int initialItemIndex, ValueChanged<int> onSelectedItemChanged) {
@@ -320,10 +326,20 @@ class QrCodeSettings extends StatelessWidget {
         SizedBox(
           child: ListTile(
             onTap: () async {
-              final ImagePicker _imagePicker = ImagePicker();
-              final XFile? image =
-                  await _imagePicker.pickImage(source: ImageSource.gallery);
+              final ImagePicker imagePicker = ImagePicker();
+              final XFile? imageFile =
+                  await imagePicker.pickImage(source: ImageSource.gallery);
+              if (imageFile != null) {
+                onQrEmbedImageChanged(Image.file(File(imageFile.path)));
+              } else {
+                Fluttertoast.showToast(msg: 'No select any files');
+              }
             },
+            onLongPress: () {
+              onQrEmbedImageChanged(null);
+              Fluttertoast.showToast(msg: 'Clear selected image');
+            },
+            trailing: qrEmbedImage,
             title: const Text('Embed image'),
             subtitle: const Text(
                 'Select an image to be overlaid in the center of the QR code'),
