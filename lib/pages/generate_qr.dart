@@ -145,6 +145,7 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
 
     if (args.pasteFromClipboard) {
       _pasteFromClipboard();
+      args.pasteFromClipboard = false;
     }
 
     return Scaffold(
