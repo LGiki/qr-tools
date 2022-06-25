@@ -1,6 +1,6 @@
 # QR Tools
 
-A simple QR code scanner and generator written in Flutter.
+A simple QR code scanner and generator app written in Flutter.
 
 # Features
 
