@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qr_tools/types/generate_qr_args.dart';
 import 'package:qr_tools/widgets/qr_code_settings.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class GenerateQrPage extends StatefulWidget {
   const GenerateQrPage({
@@ -113,6 +114,7 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
       _qrDataModuleShape = QrDataModuleShape.square;
       _qrEmbedImage = null;
     });
+    Fluttertoast.showToast(msg: 'Reset to default settings');
   }
 
   // GlobalKey globalKey = GlobalKey();
