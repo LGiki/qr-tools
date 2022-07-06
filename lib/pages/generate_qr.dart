@@ -100,11 +100,15 @@ class _GenerateQrPageState extends State<GenerateQrPage> {
   void _pasteFromClipboard() {
     Clipboard.getData(Clipboard.kTextPlain).then((value) {
       final newText = value?.text ?? "";
-      _contentController.value = _contentController.value.copyWith(
-        text: newText,
-        selection: TextSelection.collapsed(offset: newText.length),
-      );
-      _setContent(newText);
+      if (newText.isEmpty) {
+        Fluttertoast.showToast(msg: 'Nothing in clipboard');
+      } else {
+        _contentController.value = _contentController.value.copyWith(
+          text: newText,
+          selection: TextSelection.collapsed(offset: newText.length),
+        );
+        _setContent(newText);
+      }
     });
   }
 
