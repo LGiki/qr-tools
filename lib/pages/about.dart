@@ -16,6 +16,8 @@ class AboutPage extends StatelessWidget {
       MaterialPageRoute<void>(
         builder: (context) => Theme(
           data: ThemeData(
+            useMaterial3: true,
+            primaryColor: backgroundColor,
             appBarTheme: AppBarTheme(
               systemOverlayStyle: SystemUiOverlayStyle(
                   statusBarColor: backgroundColor,
@@ -23,6 +25,7 @@ class AboutPage extends StatelessWidget {
                   statusBarBrightness: Brightness.dark),
               backgroundColor: backgroundColor,
               foregroundColor: Colors.white,
+              surfaceTintColor: backgroundColor,
               elevation: 0,
             ),
           ),
